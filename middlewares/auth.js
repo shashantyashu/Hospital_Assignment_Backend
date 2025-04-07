@@ -38,7 +38,7 @@ export const isAdminAuthenticated = catchAsyncErrors(
       expectedRole = "Doctor";
     } else {
       return next(
-        new ErrorHandler("Admin or Doctor is not authenticated!", 400)
+        new ErrorHandler("Admin or Doctor is not authenticated!", 403)
       );
     }
 
