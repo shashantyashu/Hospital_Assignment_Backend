@@ -14,7 +14,7 @@ config({ path: "./config.env" });
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL_ONE, process.env.FRONTEND_URL_TWO],
+    origin: ["https://hospital-assignment-frontend.onrender.com", "https://hospital-assignment-dashboard.onrender.com"],
     method: ["GET", "POST", "DELETE", "PUT"],
     credentials: true,
   })
