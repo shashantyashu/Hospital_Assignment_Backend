@@ -39,6 +39,8 @@ export const generateToken = (user, message, statusCode, res) => {
         Date.now() + Number(process.env.COOKIE_EXPIRE) * 24 * 60 * 60 * 1000
       ),
       httpOnly: true,
+      secure: true,         // ✅ Only send over HTTPS
+      sameSite: "None",     // ✅ Allow cross-site cookies (between frontend & backend)
     })
     .json({
       success: true,
