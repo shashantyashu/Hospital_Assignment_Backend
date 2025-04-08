@@ -41,7 +41,7 @@ export const patientRegister = catchAsyncErrors(async (req, res, next) => {
 
 export const login = catchAsyncErrors(async (req, res, next) => {
   const { email, password, confirmPassword, role } = req.body;
-  console.log(req.body);
+  // console.log(req.body);
   if (!email || !password || !confirmPassword || !role) {
     return next(new ErrorHandler("Please Fill Full Form!", 400));
   }
@@ -53,12 +53,12 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({ email }).select("+password");
   
   if (!user) {
-    return next(new ErrorHandler("Invalid Email Or Password!", 400));
+    return next(new ErrorHandler("Invalid Email!", 400));
   }
 
   const isPasswordMatch = await user.comparePassword(password);
   if (!isPasswordMatch) {
-    return next(new ErrorHandler("Invalid Email Or Password!", 400));
+    return next(new ErrorHandler("Invalid Password!", 400));
   }
   if(role != user.role){//role
     console.log(user.role);
@@ -211,22 +211,30 @@ export const getUserDetails = catchAsyncErrors(async (req, res, next) => {
 //     });
 // });
 
+// export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
+//   res
+//     .status(201)
+//     .cookie("adminToken", "", {
+//       httpOnly: true,
+//       expires: new Date(Date.now()),
+//     })
+//     .cookie("doctorToken", "", {
+//       httpOnly: true,
+//       expires: new Date(Date.now()),
+//     })
+//     .json({
+//       success: true,
+//       message: "User Logged Out Successfully.",
+//     });
+// });
+
 export const logoutAdmin = catchAsyncErrors(async (req, res, next) => {
-  res
-    .status(201)
-    .cookie("adminToken", "", {
-      httpOnly: true,
-      expires: new Date(Date.now()),
-    })
-    .cookie("doctorToken", "", {
-      httpOnly: true,
-      expires: new Date(Date.now()),
-    })
-    .json({
-      success: true,
-      message: "User Logged Out Successfully.",
-    });
+  res.status(200).json({
+    success: true,
+    message: "User Logged Out Successfully (client should delete token).",
+  });
 });
+
 
 // Logout function for frontend patient
 // export const logoutPatient = catchAsyncErrors(async (req, res, next) => {
