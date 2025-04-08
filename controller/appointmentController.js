@@ -95,6 +95,7 @@ export const updateAppointmentStatus = catchAsyncErrors(
     if (!appointment) {
       return next(new ErrorHandler("Appointment not found!", 404));
     }
+    console.log(req.body);
     appointment = await Appointment.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
