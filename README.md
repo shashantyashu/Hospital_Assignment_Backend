@@ -5,7 +5,7 @@ This is the backend server for the **Hospital Management System**, developed usi
 ---
 
 ## 📂 Project Structure
-
+```bash
 backend/
 ├── app.js # Main Express app setup
 ├── server.js # Entry point: starts server & configures Cloudinary
@@ -41,7 +41,7 @@ backend/
 │
 └── cronJobs/
 └── attendanceCron.js # Automated attendance marking
-
+```
 
 ---
 
