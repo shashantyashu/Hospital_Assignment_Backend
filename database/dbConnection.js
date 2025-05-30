@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
 import { config } from "dotenv";
+import { startAttendanceCron } from "../cronJobs/attendance.js"; // import the cron logic
+
 config({ path: "./config.env" });
 
 export const dbConnection = () => {
@@ -9,6 +11,7 @@ export const dbConnection = () => {
     })
     .then(() => {
       console.log("Connected to database!");
+      startAttendanceCron(); // Start cron after DB is connected
     })
     .catch((err) => {
       console.log("Some error occured while connecting to database:", err);

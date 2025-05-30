@@ -7,6 +7,7 @@ export const postAppointment = catchAsyncErrors(async (req, res, next) => {
   const {
     firstName,
     lastName,
+    patientName,
     email,
     phone,
     nic,
@@ -22,6 +23,7 @@ export const postAppointment = catchAsyncErrors(async (req, res, next) => {
   if (
     !firstName ||
     !lastName ||
+    !patientName ||
     !email ||
     !phone ||
     !nic ||
@@ -58,6 +60,7 @@ export const postAppointment = catchAsyncErrors(async (req, res, next) => {
   const appointment = await Appointment.create({
     firstName,
     lastName,
+    patientName,
     email,
     phone,
     nic,
